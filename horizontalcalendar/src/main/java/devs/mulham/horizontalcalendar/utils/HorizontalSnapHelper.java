@@ -17,21 +17,23 @@ public class HorizontalSnapHelper extends LinearSnapHelper {
     private HorizontalCalendar horizontalCalendar;
     private HorizontalCalendarView calendarView;
 
-    @Override
+    @override
     public View findSnapView(RecyclerView.LayoutManager layoutManager) {
-        View snapView = super.findSnapView(layoutManager);
+    View snapView = super.findSnapView(layoutManager);
 
-        if (calendarView.getScrollState() != RecyclerView.SCROLL_STATE_DRAGGING){
+        if (calendarView.getScrollState() != RecyclerView.SCROLL_STATE_DRAGGING) {
             int selectedItemPosition;
-            if (snapView == null){
+            if (snapView == null) {
                 // no snapping required
                 selectedItemPosition = horizontalCalendar.getSelectedDatePosition();
             } else {
-                int[] snapDistance = calculateDistanceToFinalSnap(layoutManager, snapView);
-                /*if ((snapDistance[0] != 1) && (snapDistance[0] != -2)) {
-                    return snapView;
-                }*/
                 selectedItemPosition = layoutManager.getPosition(snapView);
+                int[] snapDistance = calculateDistanceToFinalSnap(layoutManager, snapView);
+                boolean beforeItemIsDisable = horizontalCalendar.isItemDisabled(selectedItemPosition-1);
+                boolean nextItemIsDisable = horizontalCalendar.isItemDisabled(selectedItemPosition+1);
+                if (((snapDistance[0] != 0) || (snapDistance[1] != 0)) && !beforeItemIsDisable && !nextItemIsDisable) {
+                 return snapView;
+                }
             }
 
             notifyCalendarListener(selectedItemPosition);
