@@ -28,9 +28,9 @@ public class HorizontalSnapHelper extends LinearSnapHelper {
                 selectedItemPosition = horizontalCalendar.getSelectedDatePosition();
             } else {
                 int[] snapDistance = calculateDistanceToFinalSnap(layoutManager, snapView);
-                if ((snapDistance[0] != 1) && (snapDistance[0] != -2)) {
+                /*if ((snapDistance[0] != 1) && (snapDistance[0] != -2)) {
                     return snapView;
-                }
+                }*/
                 selectedItemPosition = layoutManager.getPosition(snapView);
             }
 
