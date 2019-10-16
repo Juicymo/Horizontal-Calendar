@@ -17,7 +17,7 @@ public class HorizontalSnapHelper extends LinearSnapHelper {
     private HorizontalCalendar horizontalCalendar;
     private HorizontalCalendarView calendarView;
 
-    @override
+    @Override
     public View findSnapView(RecyclerView.LayoutManager layoutManager) {
     View snapView = super.findSnapView(layoutManager);
 
